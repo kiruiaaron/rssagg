@@ -7,7 +7,6 @@ package database
 
 import (
 	"context"
-	"database/sql"
 	"time"
 
 	"github.com/google/uuid"
@@ -20,14 +19,14 @@ VALUES ($1, $2, $3, $4)
 RETURNING id, created_at, updated_at, name
 `
 
-type CreateUserParams struct {
+/*type CreateUserParams struct {
 	Column1 uuid.NullUUID
 	Column2 sql.NullTime
 	Column3 sql.NullTime
 	Column4 sql.NullString
 }
-
-type CreateUserRow struct {
+*/
+type CreateUserParams struct {
 	ID        uuid.UUID
 	CreatedAt time.Time
 	UpdatedAt time.Time
@@ -36,10 +35,10 @@ type CreateUserRow struct {
 
 func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (CreateUserRow, error) {
 	row := q.db.QueryRowContext(ctx, createUser,
-		arg.Column1,
-		arg.Column2,
-		arg.Column3,
-		arg.Column4,
+		arg.ID,
+		arg.CreatedAt,
+		arg.UpdatedAt,
+		arg.Name,
 	)
 	var i CreateUserRow
 	err := row.Scan(

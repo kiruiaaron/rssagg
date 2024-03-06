@@ -4,4 +4,15 @@
 
 package database
 
-import ()
+import (
+	"time"
+	"github.com/google/uuid"
+)
+
+
+type CreateUserRow struct {
+	ID        uuid.UUID
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	Name      string
+}
