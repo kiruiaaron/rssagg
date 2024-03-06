@@ -3,6 +3,8 @@ sql:
   - schema: "sql/schema"
     queries: "sql/queries"
     engine: "postgresql"
+    database:
+      uri: "postgres://kiruiaaron:Bq3edpaakp@localhost:5432/rssagg"
     gen:
       go:
         out: "internal/database"
